@@ -25,9 +25,15 @@ public class DashScopeExample {
         //使用模型
         model.stream(messages, null, null).flatMapIterable(ChatResponse::getContent)
                 .map(block -> {
-                    if (block instanceof TextBlock tb) return tb.getText();
-                    if (block instanceof ThinkingBlock tb) return tb.getThinking();
-                    if (block instanceof ToolUseBlock tub) return tub.getContent();
+                    if (block instanceof TextBlock tb) {
+                        return tb.getText();
+                    }
+                    if (block instanceof ThinkingBlock tb) {
+                        return tb.getThinking();
+                    }
+                    if (block instanceof ToolUseBlock tub) {
+                        return tub.getContent();
+                    }
                     return "";
                 }).filter(text -> !text.isEmpty())
                 .doOnNext(System.out::print)
