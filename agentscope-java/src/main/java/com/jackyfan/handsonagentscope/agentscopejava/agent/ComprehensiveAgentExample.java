@@ -1,4 +1,4 @@
-package com.jackyfan.handsonagentscope.agentscopejava.model.agent;
+package com.jackyfan.handsonagentscope.agentscopejava.agent;
 
 import io.agentscope.core.ReActAgent;
 import io.agentscope.core.formatter.dashscope.DashScopeChatFormatter;
