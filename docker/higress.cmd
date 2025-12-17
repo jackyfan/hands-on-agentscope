@@ -1,0 +1,1 @@
+docker run -d --rm --name higress-ai -v ${PWD}:/data -p 8001:8001 -p 8080:8080 -p 8443:8443 higress-registry.cn-hangzhou.cr.aliyuncs.com/higress/all-in-one:latest

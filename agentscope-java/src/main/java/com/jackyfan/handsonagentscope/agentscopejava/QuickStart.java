@@ -14,6 +14,8 @@ public class QuickStart {
     public static void main(String[] args) {
         StudioManager.init()
                 .studioUrl("http://localhost:3000")
+                .project("agentscope-java")
+                .runName("QuickStart")
                 .initialize()
                 .block();
         // 准备工具
@@ -32,7 +34,7 @@ public class QuickStart {
 
         // 发送消息
         Msg msg = Msg.builder()
-                .textContent("你好！Jarvis，现在北京几点了？")
+                .textContent("你好！Jarvis，现在北京几点了？还有今天天气如何？")
                 .build();
 
         Msg response = jarvis.call(msg).block();
