@@ -3,6 +3,7 @@ package com.jackyfan.handsonagentscope.agentscopejava.model;
 import io.agentscope.core.message.*;
 import io.agentscope.core.model.ChatResponse;
 import io.agentscope.core.model.DashScopeChatModel;
+import io.agentscope.core.studio.StudioManager;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -15,6 +16,12 @@ import java.util.List;
 
 public class VisionModelExample {
     public static void main(String[] args) throws IOException {
+        StudioManager.init()
+                .studioUrl("http://localhost:3000")
+                .project("agentscope-java")
+                .runName("VisionModelExample")
+                .initialize()
+                .block();
         // 创建视觉模型
         DashScopeChatModel visionModel = DashScopeChatModel.builder()
                 .apiKey(System.getenv("DASHSCOPE_API_KEY"))
@@ -31,9 +38,8 @@ public class VisionModelExample {
                 .role(MsgRole.USER)
                 .content(List.of(
                         TextBlock.builder().text("这张图片里有什么？").build(),
-                        ImageBlock.builder().source(Base64Source.builder()
-                                .data(base64Image)
-                                .mediaType("image/jpg")
+                        ImageBlock.builder().source(URLSource.builder()
+                                .url("https://s.abcnews.com/images/Business/GTY_convertible_kab_150716_16x9_992.jpg")
                                 .build()).build()
                 ))
                 .build();
@@ -45,7 +51,6 @@ public class VisionModelExample {
             if (block instanceof ToolUseBlock tub) return tub.getContent();
             return "";
         }).filter(text -> !text.isEmpty()).doOnNext(System.out::print).blockLast();
-        System.exit(0);
     }
 
 }
