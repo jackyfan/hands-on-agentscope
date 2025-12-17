@@ -3,6 +3,7 @@ package com.jackyfan.handsonagentscope.agentscopejava;
 import io.agentscope.core.ReActAgent;
 import io.agentscope.core.message.Msg;
 import io.agentscope.core.model.DashScopeChatModel;
+import io.agentscope.core.studio.StudioManager;
 import io.agentscope.core.tool.Toolkit;
 import io.agentscope.core.tool.Tool;
 import io.agentscope.core.tool.ToolParam;
@@ -11,6 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class QuickStart {
     public static void main(String[] args) {
+        StudioManager.init()
+                .studioUrl("http://localhost:3000")
+                .initialize()
+                .block();
         // 准备工具
         Toolkit toolkit = new Toolkit();
         toolkit.registerTool(new SimpleTools());
@@ -20,7 +25,7 @@ public class QuickStart {
                 .sysPrompt("你是一个名为 Jarvis 的助手")
                 .model(DashScopeChatModel.builder()
                         .apiKey(System.getenv("DASHSCOPE_API_KEY"))
-                        .modelName("qwen-max")
+                        .modelName("qwen-plus")
                         .build())
                 .toolkit(toolkit)
                 .build();

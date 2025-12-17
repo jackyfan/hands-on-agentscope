@@ -3,11 +3,16 @@ package com.jackyfan.handsonagentscope.agentscopejava.model;
 import io.agentscope.core.message.*;
 import io.agentscope.core.model.ChatResponse;
 import io.agentscope.core.model.DashScopeChatModel;
+import io.agentscope.core.studio.StudioManager;
 
 import java.util.List;
 
 public class DashScopeExample {
     public static void main(String[] args) {
+        StudioManager.init()
+                .studioUrl("http://localhost:3000")
+                .initialize()
+                .block();
         // 创建模型
         DashScopeChatModel model = DashScopeChatModel.builder()
                 .apiKey(System.getenv("DASHSCOPE_API_KEY"))

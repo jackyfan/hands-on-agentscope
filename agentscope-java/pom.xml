@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>4.0.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>com.jackyfan.handsonagentscope</groupId>
     <artifactId>agentscope-java</artifactId>
@@ -31,67 +31,56 @@
         <agentscope.version>1.0.2</agentscope.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webmvc</artifactId>
-        </dependency>
+            <!-- AgentScope Core -->
+            <dependency>
+                <groupId>io.agentscope</groupId>
+                <artifactId>agentscope-core</artifactId>
+                <version>${agentscope.version}</version>
+            </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webmvc-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.agentscope</groupId>
-            <artifactId>agentscope</artifactId>
-            <version>${agentscope.version}</version>
-        </dependency>
-        <!-- 在 agentscope 基础上添加 -->
-        <dependency>
-            <groupId>com.openai</groupId>
-            <artifactId>openai-java</artifactId>
-            <version>4.9.0</version>
-        </dependency>
-        <!-- 在 agentscope 基础上添加 -->
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>4.9.3</version>
-        </dependency>
-        <dependency>
-            <groupId>io.socket</groupId>
-            <artifactId>socket.io-client</artifactId>
-            <version>2.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-exporter-otlp</artifactId>
-            <version>1.9.1</version>
-        </dependency>
-        <dependency>
-            <groupId>io.opentelemetry.instrumentation</groupId>
-            <artifactId>opentelemetry-reactor-3.1</artifactId>
-            <version>2.9.0-alpha</version>
-        </dependency>
-    </dependencies>
+            <!-- AgentScope Extensions -->
+            <dependency>
+                <groupId>io.agentscope</groupId>
+                <artifactId>agentscope-extensions-rag-bailian</artifactId>
+                <version>${agentscope.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.agentscope</groupId>
+                <artifactId>agentscope-extensions-rag-simple</artifactId>
+                <version>${agentscope.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.agentscope</groupId>
+                <artifactId>agentscope-extensions-mem0</artifactId>
+                <version>${agentscope.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.agentscope</groupId>
+                <artifactId>agentscope-extensions-reme</artifactId>
+                <version>${agentscope.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.agentscope</groupId>
+                <artifactId>agentscope-extensions-studio</artifactId>
+                <version>${agentscope.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.agentscope</groupId>
+                <artifactId>agentscope-extensions-autocontext-memory</artifactId>
+                <version>${agentscope.version}</version>
+            </dependency>
+
+            <!-- Spring Boot for web examples -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-webflux</artifactId>
+            </dependency>
+        </dependencies>
 
     <build>
         <plugins>
@@ -121,5 +110,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
